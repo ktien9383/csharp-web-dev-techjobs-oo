@@ -1,7 +1,7 @@
 ﻿using System;
 namespace TechJobsOO
 {
-    public class Job
+    public class Job : JobField
     {
         public int Id { get; }
         private static int nextId = 1;
@@ -28,6 +28,7 @@ namespace TechJobsOO
            JobCoreCompetency = jobCoreCompetency;
         }
 
+        // TODO: Generate Equals() and GetHashCode() methods.
         public override bool Equals(object obj)
         {
             return obj is Job job &&
@@ -49,11 +50,11 @@ namespace TechJobsOO
             string jobTypeStr = JobType.Value == "" ? dataStr : JobType.Value;    
             string jobCoreCompetencyStr = JobCoreCompetency.Value == "" ? dataStr : JobCoreCompetency.Value;    
             
-            if (nameStr == ""  && employerNameStr == ""  && 
-                employerLocationStr == "" && jobTypeStr == "" && 
-                jobCoreCompetencyStr == "")
+            if (nameStr == dataStr  && employerNameStr == dataStr  && 
+                employerLocationStr == dataStr && jobTypeStr == dataStr && 
+                jobCoreCompetencyStr == dataStr)
             {
-                jobInfo = "OOPS! This job does not seem to exist.";
+                jobInfo = $"\n***** OOPS! This job ID: {Id} does not seem to have data *****";
             }
             else
             {
@@ -66,9 +67,5 @@ namespace TechJobsOO
             
             
         }
-
-
-        // TODO: Generate Equals() and GetHashCode() methods.
-
     }
 }
